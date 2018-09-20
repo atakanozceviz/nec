@@ -42,7 +42,7 @@ You will need to define your commands in a json file.
 }
 ```
 
-In the above example there are 2 commands, `build` and `test`.
+In the above example there are 2 commands, `build` and `test`. Do not change these names!
 
 `"description"` is short description for that command and will be shown in cli like this: 
 
@@ -81,10 +81,17 @@ Nec tries to load "nec.json" file in the current directory. You can specify json
 
 ```console
 $ nec
-Nec creates dependency graph for VS projects
-then finds out which VS projects needs to build
-and their tests to run by checking a git commit 
-after that nec can build necessary projects and run their tests.
+Nec helps you to speed up your CI for 
+Visual Studio projects by looking up 
+changes (using git diff) and finds out 
+which solutions needs to build and tests 
+needs to run. After that executes user-defined 
+commands for the test projects and solutions.
+
+Nec parses all the solutions (.sln) and 
+projects (.csproj) in a folder and creates 
+dependency graph, then uses that graph for 
+finding dependencies.
 
 Usage:
   nec [command]

@@ -29,10 +29,17 @@ var cfgFile string
 var rootCmd = &cobra.Command{
 	Use:   "nec",
 	Short: "Build and test necessary VS projects.",
-	Long: `Nec creates dependency graph for VS projects
-then findsout which VS projects needs to build
-and their tests to run by checking a git commit 
-after that nec can build necessary projects and run their tests.
+	Long: `Nec helps you to speed up your CI for 
+Visual Studio projects by looking up 
+changes (using git diff) and finds out 
+which solutions needs to build and tests 
+needs to run. After that executes user-defined 
+commands for the test projects and solutions.
+
+Nec parses all the solutions (.sln) and 
+projects (.csproj) in a folder and creates 
+dependency graph, then uses that graph for 
+finding dependencies.
 `,
 	// Uncomment the following line if your bare application
 	// has an action associated with it:
