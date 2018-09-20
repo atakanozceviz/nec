@@ -32,7 +32,7 @@ var rootCmd = &cobra.Command{
 	Long: `nec creates dependency graph for VS projects
 then findsout which VS projects needs to build
 and their tests to run by checking a git commit 
-after that executes user-defined commands.
+after that builds necessary projects and run their tests.
 `,
 	// Uncomment the following line if your bare application
 	// has an action associated with it:
