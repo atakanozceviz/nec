@@ -16,7 +16,6 @@
       "name": "dotnet",
       "args": [
         "test",
-        "--no-build",
         "--logger:trx"
       ]
     }
