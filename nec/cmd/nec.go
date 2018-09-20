@@ -13,7 +13,7 @@ var settingsPath string
 var commitID string
 
 func init() {
-	flag.StringVar(&settingsPath, "s", "cmds.json", "Path to settings file.")
+	flag.StringVar(&settingsPath, "s", "nec.json", "Path to settings file.")
 	flag.StringVar(&commitID, "c", "HEAD^", "Git commit id for getting changes.")
 	flag.Parse()
 
