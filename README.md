@@ -115,13 +115,13 @@ Use "nec [command] --help" for more information about a command.
 For the above sample json:
 
 ```console
-$ nec -s path/to/*.json build -c HEAD^^^
+$ nec -s path/to/*.json build -c HEAD^^
 ```
 
 Command would check which projects are affected since two commits (HEAD^^) then run `dotnet build` command in the necessary solutions folders.
 
 ```console
-$ nec -s path/to/*.json test -c HEAD^^^
+$ nec -s path/to/*.json test -c HEAD^^
 ```
 
 Command would check which projects are affected since two commits (HEAD^^) then run `dotnet test --logger:trx` command in the necessary test projects folders.
