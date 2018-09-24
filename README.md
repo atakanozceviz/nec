@@ -113,6 +113,14 @@ Use "nec [command] --help" for more information about a command.
 
 `"Available Commands"` are generated from json file.
 
+While using `-c` flag, commit ID can be path to project folder with leading ID:
+
+```console
+$ nec -s path/to/*.json build -c ../otherProject/HEAD^^^
+```
+
+This would use `"otherProject"` folder to get project changes. (Runs git diff HEAD^^^ in that folder)
+
 For the above sample json:
 
 ```console
