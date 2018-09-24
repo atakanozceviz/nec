@@ -11,17 +11,17 @@ import (
 
 var settingsPath string
 var commitID string
+var walkpath string
 
 func init() {
 	flag.StringVar(&settingsPath, "s", "nec.json", "Path to settings file.")
 	flag.StringVar(&commitID, "c", "HEAD^", "Git commit id for getting changes.")
+	flag.StringVar(&walkpath, "w", ".", "Path to search for sln files.")
 	flag.Parse()
-
-	// flag.StringVar(&commitID, "c", "HEAD^", "Git commit id for getting changes.")
 
 	for _, cmd := range commands(settingsPath) {
 		cmd.RunE = func(cmd *cobra.Command, args []string) error {
-			return nec.Run(settingsPath, commitID, cmd.Use)
+			return nec.Run(settingsPath, commitID, cmd.Use, walkpath)
 		}
 
 		rootCmd.AddCommand(cmd)

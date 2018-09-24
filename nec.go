@@ -7,13 +7,13 @@ import (
 	"sync"
 )
 
-func Run(settingsPath, lastCommit, command string) error {
+func Run(settingsPath, lastCommit, command string, walkpath ...string) error {
 	settings, err := loadSettings(settingsPath)
 	if err != nil {
 		return fmt.Errorf("cannot load settings: %s", err)
 	}
 
-	if err := findPaths(settings, lastCommit); err != nil {
+	if err := findPaths(settings, lastCommit, walkpath...); err != nil {
 		return err
 	}
 

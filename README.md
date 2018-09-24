@@ -81,16 +81,16 @@ Nec tries to load "nec.json" file in the current directory. You can specify json
 
 ```console
 $ nec
-Nec helps you to speed up your CI for 
-Visual Studio projects by looking up 
-changes (using git diff) and finds out 
-which solutions needs to build and tests 
-needs to run. After that executes user-defined 
+Nec helps you to speed up your CI for
+Visual Studio projects by looking up
+changes (using git diff) and finds out
+which solutions needs to build and tests
+needs to run. After that executes user-defined
 commands for the test projects and solutions.
 
-Nec parses all the solutions (.sln) and 
-projects (.csproj) in a folder and creates 
-dependency graph, then uses that graph for 
+Nec parses all the solutions (.sln) and
+projects (.csproj) in a folder and creates
+dependency graph, then uses that graph for
 finding dependencies.
 
 Usage:
@@ -106,6 +106,7 @@ Flags:
       --config string   config file (default is $HOME/.nec.yaml)
   -h, --help            help for nec
   -s, --s string        Path to settings file. (default "nec.json")
+  -w, --w string        The path to start the search for .sln files. (default ".")
 
 Use "nec [command] --help" for more information about a command.
 ```

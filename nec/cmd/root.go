@@ -65,6 +65,7 @@ func init() {
 
 	rootCmd.PersistentFlags().StringVarP(&settingsPath, "s", "s", "nec.json", "Path to settings file.")
 	rootCmd.PersistentFlags().StringVarP(&commitID, "c", "c", "HEAD^", "Git commit id for getting changes.")
+	rootCmd.PersistentFlags().StringVarP(&walkpath, "w", "w", ".", "The path to start the search for .sln files.")
 }
 
 // initConfig reads in config file and ENV variables if set.
