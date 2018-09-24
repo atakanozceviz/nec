@@ -23,7 +23,7 @@ func findPaths(settings *Settings, lastcommit string, walkpath ...string) error 
 		if settings.Paths == nil {
 			settings.Paths = make(map[string][]string)
 		}
-		if len(walkpath) >= 1 {
+		if len(walkpath) >= 1 && walkpath[0] != "." {
 			if strings.Contains(path.Dir(pth), projectFolderName) {
 				settings.Paths["test"] = append(settings.Paths["test"], path.Dir(pth))
 			}
@@ -36,7 +36,7 @@ func findPaths(settings *Settings, lastcommit string, walkpath ...string) error 
 		if settings.Paths == nil {
 			settings.Paths = make(map[string][]string)
 		}
-		if len(walkpath) >= 1 {
+		if len(walkpath) >= 1 && walkpath[0] != "." {
 			if strings.Contains(path.Dir(pth), projectFolderName) {
 				settings.Paths["build"] = append(settings.Paths["build"], path.Dir(pth))
 			}
