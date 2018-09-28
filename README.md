@@ -116,7 +116,7 @@ Use "nec [command] --help" for more information about a command.
 While using `-c` flag, commit ID can be path to project folder with leading ID:
 
 ```console
-$ nec -s path/to/*.json build -c ../otherProject/HEAD^^^
+$ nec -s path/to/*.json build -c ../GitRepositoryRoot/HEAD^^^
 ```
 
 This would use `"otherProject"` folder to get project changes. (Runs git diff HEAD^^^ in that folder)

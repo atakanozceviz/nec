@@ -20,8 +20,12 @@ func init() {
 	flag.Parse()
 
 	for _, cmd := range commands(settingsPath) {
-		cmd.RunE = func(cmd *cobra.Command, args []string) error {
-			return nec.Run(settingsPath, commitID, cmd.Use, walkpath)
+		cmd.Run = func(cmd *cobra.Command, args []string) {
+			err := nec.Run(settingsPath, commitID, cmd.Use, walkpath)
+			if err != nil {
+				fmt.Printf("Error: %v\n", err)
+				os.Exit(1)
+			}
 		}
 
 		rootCmd.AddCommand(cmd)
