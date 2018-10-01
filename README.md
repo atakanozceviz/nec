@@ -119,7 +119,7 @@ While using `-c` flag, commit ID can be path to project folder with leading ID:
 $ nec -s path/to/*.json build -c ../GitRepositoryRoot/HEAD^^^
 ```
 
-This would use `"otherProject"` folder to get project changes. (Runs git diff HEAD^^^ in that folder)
+This would use `"GitRepositoryRoot"` folder to get project changes. (Runs git diff HEAD^^^ in that folder)
 
 For the above sample json:
 
