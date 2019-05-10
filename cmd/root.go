@@ -39,7 +39,7 @@ func Execute() {
 
 func init() {
 	cobra.OnInitialize(initConfig)
-	rootCmd.PersistentFlags().StringVarP(&CfgFile, "settings", "s", "", "settings file (default is nec.json)")
+	rootCmd.PersistentFlags().StringVarP(&CfgFile, "settings", "s", "", "settings file (default is nec)")
 	rootCmd.PersistentFlags().StringP("commit", "c", "HEAD^", "git commit id to find affected projects")
 	rootCmd.PersistentFlags().StringP("walk-path", "w", ".", "the path to start the search for .sln files")
 	rootCmd.PersistentFlags().StringP("ignore", "i", "", "ignore list file")
@@ -55,8 +55,7 @@ func initConfig() {
 		// Use config file from the flag.
 		viper.SetConfigFile(CfgFile)
 	} else {
-		// Search config in home directory with name ".nec" (without extension).
-		viper.AddConfigPath("./config")
+		viper.AddConfigPath(".")
 		viper.SetConfigName("nec")
 	}
 
