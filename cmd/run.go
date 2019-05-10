@@ -68,6 +68,21 @@ func run(typ string) error {
 			}
 		}
 	}
+
+	for projectName := range affectedProjects {
+		for _, solution := range sln {
+			for _, project := range solution.Projects {
+				if projectName == project.Name {
+					if project.IsTest() {
+						testsNeedsToRun[project.Name] = project.FilePath
+						continue
+					}
+					solutionsNeedsToBuild[solution.Name] = solution.FilePath
+				}
+			}
+		}
+	}
+
 	allProjects["build"] = solutionsNeedsToBuild
 	allProjects["test"] = testsNeedsToRun
 
