@@ -7,12 +7,12 @@ Nec parses all the solutions (.sln) and projects (.csproj) in a folder and creat
 ## Install
 
 ```
-go get github.com/atakanozceviz/nec/nec
+go get github.com/atakanozceviz/nec
 ```
 
 ## Getting Started
 
-You will need to define your commands in a json file.
+You will need to define your commands in a configuration file. Nec supports JSON, TOML, YAML, HCL, and Java Properties files.
 
 ##### Example JSON:
 
@@ -44,21 +44,11 @@ You will need to define your commands in a json file.
 
 In the above example there are 2 commands, `build` and `test`. Do not change these names!
 
-`"description"` is short description for that command and will be shown in cli like this: 
-
-```console
-...
-Available Commands:
-  build       Builds a project and all of its dependencies.
-  test        .NET test driver used to execute unit tests.
-...
-```
-
+`"description"` is short description for that command.
 `"workers"`: defines how many commands can be run in parallel. (Setting to 1 would run one command at a time)
-`"onerror"`: defines what to do when error occurs. Can be `"exit"` or `"continue"`. 
+`"onerror"`: defines what to do when error occurs. Can be `"exit"` or `"continue"`.
 - `"exit"`: stops all the existing works and exits with error when an error occurs.
 - `"continue"`: continues until all the works are done, if error occurs just prints out.
-
 `"name"` is the command name. Must be executable.
 `"args"` is the list of arguments for the command.
 
@@ -97,21 +87,19 @@ Usage:
   nec [command]
 
 Available Commands:
-  build       Builds a project and all of its dependencies.
+  build       Run build command.
   help        Help about any command
-  test        .NET test driver used to execute unit tests.
+  test        Run test command.
 
 Flags:
-  -c, --c string        Git commit id for getting changes. (default "HEAD^")
-      --config string   config file (default is $HOME/.nec.yaml)
-  -h, --help            help for nec
-  -s, --s string        Path to settings file. (default "nec.json")
-  -w, --w string        The path to start the search for .sln files. (default ".")
+  -c, --commit string      git commit id to find affected projects (default "HEAD^")
+  -h, --help               help for nec
+  -i, --ignore string      ignore list file
+  -s, --settings string    settings file (default is nec.json)
+  -w, --walk-path string   the path to start the search for .sln files (default ".")
 
 Use "nec [command] --help" for more information about a command.
 ```
-
-`"Available Commands"` are generated from json file.
 
 While using `-c` flag, commit ID can be path to project folder with leading ID:
 

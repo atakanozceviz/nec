@@ -1,6 +1,6 @@
 package main
 
-import "github.com/atakanozceviz/nec/nec/cmd"
+import "github.com/atakanozceviz/nec/cmd"
 
 func main() {
 	cmd.Execute()

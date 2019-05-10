@@ -4,12 +4,11 @@ import (
 	"fmt"
 	"os"
 
-	homedir "github.com/mitchellh/go-homedir"
 	"github.com/spf13/cobra"
 	"github.com/spf13/viper"
 )
 
-var cfgFile string
+var CfgFile string
 
 // rootCmd represents the base command when called without any subcommands
 var rootCmd = &cobra.Command{
@@ -25,8 +24,8 @@ commands for the test projects and solutions.
 Nec parses all the solutions (.sln) and 
 projects (.csproj) in a folder and creates 
 dependency graph, then uses that graph for 
-finding dependencies.
-`,
+finding dependencies.`,
+	//Run: func(cmd *cobra.Command, args []string) { },
 }
 
 // Execute adds all child commands to the root command and sets flags appropriately.
@@ -40,34 +39,31 @@ func Execute() {
 
 func init() {
 	cobra.OnInitialize(initConfig)
-	rootCmd.PersistentFlags().StringVar(&cfgFile, "config", "", "config file (default is $HOME/.nec.yaml)")
-	rootCmd.PersistentFlags().StringVarP(&settingsPath, "s", "s", "nec.json", "Path to settings file.")
-	rootCmd.PersistentFlags().StringVarP(&commitID, "c", "c", "HEAD^", "Git commit id for getting changes.")
-	rootCmd.PersistentFlags().StringVarP(&walkpath, "w", "w", ".", "The path to start the search for .sln files.")
+	rootCmd.PersistentFlags().StringVarP(&CfgFile, "settings", "s", "", "settings file (default is nec.json)")
+	rootCmd.PersistentFlags().StringP("commit", "c", "HEAD^", "git commit id to find affected projects")
+	rootCmd.PersistentFlags().StringP("walk-path", "w", ".", "the path to start the search for .sln files")
+	rootCmd.PersistentFlags().StringP("ignore", "i", "", "ignore list file")
+	err := viper.BindPFlags(rootCmd.PersistentFlags())
+	if err != nil {
+		er(err)
+	}
 }
 
 // initConfig reads in config file and ENV variables if set.
 func initConfig() {
-	if cfgFile != "" {
+	if CfgFile != "" {
 		// Use config file from the flag.
-		viper.SetConfigFile(cfgFile)
+		viper.SetConfigFile(CfgFile)
 	} else {
-		// Find home directory.
-		home, err := homedir.Dir()
-		if err != nil {
-			fmt.Println(err)
-			os.Exit(1)
-		}
-
 		// Search config in home directory with name ".nec" (without extension).
-		viper.AddConfigPath(home)
-		viper.SetConfigName(".nec")
+		viper.AddConfigPath("./config")
+		viper.SetConfigName("nec")
 	}
 
 	viper.AutomaticEnv() // read in environment variables that match
 
 	// If a config file is found, read it in.
-	if err := viper.ReadInConfig(); err == nil {
-		fmt.Println("Using config file:", viper.ConfigFileUsed())
+	if err := viper.ReadInConfig(); err != nil {
+		er(err)
 	}
 }

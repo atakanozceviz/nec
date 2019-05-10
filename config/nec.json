@@ -1,7 +1,7 @@
 {
   "commands": {
     "build": {
-      "description":"Builds a project and all of its dependencies.",
+      "description": "Builds a project and all of its dependencies.",
       "workers": 1,
       "onerror": "exit",
       "name": "dotnet",
@@ -10,13 +10,15 @@
       ]
     },
     "test": {
-      "description":".NET test driver used to execute unit tests.",
-      "workers": 5,
+      "description": ".NET test driver used to execute unit tests.",
+      "workers": 2,
       "onerror": "continue",
       "name": "dotnet",
       "args": [
         "test",
-        "--logger:trx"
+        "--logger:trx",
+        "--",
+        "RunConfiguration.TestSessionTimeout=150000"
       ]
     }
   }
