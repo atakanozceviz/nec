@@ -11,14 +11,12 @@ import (
 
 func ParseAndGenerate(paths ...string) ([]*sln.Sln, *graph.Graph, error) {
 	allSln := make([]*sln.Sln, 0)
-	g := &graph.Graph{}
 	wg := sync.WaitGroup{}
 	defer wg.Wait()
 
 	pool, _ := ants.NewPoolWithFunc(10, func(i interface{}) {
 		defer wg.Done()
-		var err error
-		g, err = addToGraph(i.(*csproj.Csproj))
+		_, err := addToGraph(i.(*csproj.Csproj))
 		if err != nil {
 			panic(err)
 		}
