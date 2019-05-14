@@ -4,7 +4,6 @@ import (
 	"encoding/json"
 	"fmt"
 	"os"
-	"path"
 	"path/filepath"
 )
 
@@ -27,7 +26,7 @@ func slnPaths(dir ...string) ([]string, error) {
 	}
 	var paths []string
 	if err := filepath.Walk(wp, func(pth string, info os.FileInfo, err error) error {
-		if path.Ext(info.Name()) == ".sln" {
+		if filepath.Ext(info.Name()) == ".sln" {
 			paths = append(paths, pth)
 		}
 		return err
